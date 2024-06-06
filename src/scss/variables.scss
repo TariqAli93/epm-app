@@ -1,0 +1,16 @@
+$material-dark: (
+  "background": var(--v-secondary-base),
+  "app-bar": var(--v-secondary-base),
+  "navigation-drawer": var(--v-secondary-base),
+  cards: var(--v-secondary-base)
+);
+
+$tooltip-opacity: 1;
+
+.d-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  grid-column-gap: 5rem !important;
+  grid-row-gap: 0px;
+}
