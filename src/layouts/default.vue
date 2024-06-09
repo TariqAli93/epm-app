@@ -45,7 +45,7 @@
 
         <v-divider />
 
-        <v-list-item v-for="item in links" :key="item.path" link @click.prevent="goRoute(item)">
+        <v-list-item v-for="item in links" :key="item.path" link :to="`${item.path}?event=${JSON.stringify(item)}`" exact>
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>

@@ -102,10 +102,12 @@ export default {
   methods: {
     saveFile(event, count) {
       const formData = new FormData();
+      const query = JSON.parse(event.query);
+      console.log(event);
       formData.append("file", event.file);
       formData.append("file_name", event.file_name);
-      formData.append("sectionId", event.query.section_id);
-      formData.append("projectId", event.query.projectId);
+      formData.append("sectionId", query.section_id);
+      formData.append("projectId", query.projectId);
 
       switch (count) {
         case 1:
@@ -219,10 +221,10 @@ export default {
     },
 
     async fetch_files() {
-      const query_files = this.$route.query.event.section_id;
+      const query = JSON.parse(this.$route.query.event);
 
       try {
-        const sections = await this.axios.get(`sections/${query_files}`);
+        const sections = await this.axios.get(`sections/${query.section_id}`);
         this.files = sections.data.files.map((file) => {
           return {
             file_name: file.file_name.split("-")[0],

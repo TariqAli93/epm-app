@@ -7,6 +7,12 @@
 
     <v-spacer />
 
+    <div class="project-title">
+      {{ project_title }}
+    </div>
+
+    <v-spacer />
+
     <button class="control-button minimize" @click="minimize">
       <div class="codicon codicon-chrome-minimize"></div>
     </button>
@@ -23,10 +29,12 @@
 </template>
 
 <script>
+import { EventBus } from "@/plugins/eventBus";
 import { ipcRenderer, remote } from "electron";
 export default {
   data: () => ({
     title: `ادارة المشاريع`,
+    project_title: null,
     isMaximized: true
   }),
 
@@ -36,6 +44,10 @@ export default {
     });
 
     this.isMaximized = remote.getCurrentWindow().isMaximized();
+
+    EventBus.$on("change_project", (project) => {
+      this.project_title = project.project_name;
+    });
   },
 
   methods: {

@@ -75,32 +75,7 @@ export default {
       fileThree: null,
       fileFour: null,
       files: [],
-      headers: [
-        {
-          text: "ملف المباشرة",
-          align: "center",
-          sortable: false,
-          value: "fileOne"
-        },
-        {
-          text: "ملف امر اداري",
-          align: "center",
-          sortable: false,
-          value: "fileTwo"
-        },
-        {
-          text: "ملف لجنة الاستلام الاولي",
-          align: "center",
-          sortable: false,
-          value: "fileThree"
-        },
-        {
-          text: "ملف لجنة الاستلام النهائي",
-          align: "center",
-          sortable: false,
-          value: "fileFour"
-        }
-      ]
+      query: null
     };
   },
   methods: {
@@ -192,10 +167,10 @@ export default {
     },
 
     async fetch_files() {
-      const query_files = this.$route.query.event.section_id;
+      const query = JSON.parse(this.$route.query.event);
 
       try {
-        const sections = await this.axios.get(`sections/${query_files}`);
+        const sections = await this.axios.get(`sections/${query.section_id}`);
         this.files = sections.data.files.map((file) => {
           return {
             file_name: file.file_name.split("-")[0],
