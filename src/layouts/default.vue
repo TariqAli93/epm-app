@@ -58,12 +58,12 @@
 
       <template v-slot:append>
         <v-divider />
-        <v-list-item link>
+        <v-list-item link @click="logout">
           <v-list-item-icon>
             <v-icon>logout</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title @click="logout">تسجيل الخروج</v-list-item-title>
+            <v-list-item-title>تسجيل الخروج</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </template>

@@ -1,6 +1,10 @@
+$color-pack: false;
+
+@import '~vuetify/src/styles/styles.sass';
+
 $media-icon-size: 75;
-$media-icon-color: rgb(147 139 186);
-$main-color: rgb(147 139 186);
+$media-icon-color: var(--v-primary-base);
+$main-color: var(--v-primary-base);;
 
 .box-body {
   display: grid;
@@ -9,7 +13,7 @@ $main-color: rgb(147 139 186);
 
   .box-media {
     padding: 1em;
-    background: white;
+    background: var(--v-background-base);
     box-shadow: 0 2px 10px 0 rgb(0 0 0 / 10%);
     border-radius: 1em;
     display: grid;
@@ -72,4 +76,8 @@ $main-color: rgb(147 139 186);
 
 .w-100 {
   width: 100%!important;
+}
+
+.v-data-table {
+  overflow-x: auto;
 }

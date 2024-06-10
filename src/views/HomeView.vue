@@ -14,7 +14,7 @@
           </div>
 
           <div class="box-media-text">
-            <span class="box-media-text-number">50</span>
+            <span class="box-media-text-number">{{ finished_projects }}</span>
             <span>مشروع</span>
           </div>
         </div>
@@ -30,7 +30,7 @@
           </div>
 
           <div class="box-media-text">
-            <span class="box-media-text-number">50</span>
+            <span class="box-media-text-number">{{ maintenance_projects }}</span>
             <span>مشروع</span>
           </div>
         </div>
@@ -46,7 +46,7 @@
           </div>
 
           <div class="box-media-text">
-            <span class="box-media-text-number">50</span>
+            <span class="box-media-text-number">{{ stopped_projects }}</span>
             <span>مشروع</span>
           </div>
         </div>
@@ -84,7 +84,10 @@ import { EventBus } from "@/plugins/eventBus";
 export default {
   data() {
     return {
-      projects: []
+      projects: [],
+      finished_projects: "",
+      maintenance_projects: "",
+      stopped_projects: ""
     };
   },
 
@@ -103,7 +106,14 @@ export default {
     async fetchProjects() {
       try {
         const response = await this.axios.get("projects");
+
         this.projects = response.data;
+
+        this.stopped_projects = this.projects.filter((project) => project.project_status === 1).length;
+
+        this.finished_projects = this.projects.filter((project) => project.project_status === 2).length;
+
+        this.maintenance_projects = this.projects.filter((project) => project.project_status === 3).length;
       } catch (error) {
         console.log(error);
       }

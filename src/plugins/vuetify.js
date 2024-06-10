@@ -11,7 +11,9 @@ export default new Vuetify({
     options: {
       customProperties: true,
     },
-    themes: {},
+    themes: {
+      dark: {},
+    },
   },
   lang: {
     locales: { ar },

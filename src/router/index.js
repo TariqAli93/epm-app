@@ -28,6 +28,11 @@ const routes = [
     component: () => import('../views/sections/ContractView.vue'),
   },
   {
+    path: '/engineering',
+    name: 'engineering',
+    component: () => import('../views/sections/EngineeringView.vue'),
+  },
+  {
     path: '/legal',
     name: 'legal',
     component: () => import('../views/sections/LegalView.vue'),

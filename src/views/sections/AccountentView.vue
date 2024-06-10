@@ -72,9 +72,17 @@
               <v-list-item-subtitle>{{ item.file_start_date }} - {{ item.file_end_date }}</v-list-item-subtitle>
             </v-list-item-content>
             <v-list-item-action>
-              <v-btn icon @click="viewFile(item)">
-                <v-icon>open_in_new</v-icon>
-              </v-btn>
+              <div>
+                <v-btn icon class="mx-2" @click="viewFile(item)">
+                  <v-icon>open_in_new</v-icon>
+                </v-btn>
+
+                <v-divider vertical />
+
+                <v-btn :disabled="$store.getters.user.role == 0" icon class="mx-2" @click="deleteFile(item)">
+                  <v-icon>delete</v-icon>
+                </v-btn>
+              </div>
             </v-list-item-action>
           </v-list-item>
         </v-list>
@@ -220,6 +228,16 @@ export default {
       return moment(date).format("YYYY-MM-DD");
     },
 
+    async deleteFile(file) {
+      const { file_id } = file;
+      try {
+        await this.axios.delete(`files/${file_id}`);
+        this.fetch_files();
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
     async fetch_files() {
       const query = JSON.parse(this.$route.query.event);
 
@@ -227,6 +245,7 @@ export default {
         const sections = await this.axios.get(`sections/${query.section_id}`);
         this.files = sections.data.files.map((file) => {
           return {
+            ...file,
             file_name: file.file_name.split("-")[0],
             file_start_date: file.file_start_date === null ? "" : this.format_date(file.file_start_date),
             file_end_date: file.file_end_date === null ? "" : this.format_date(file.file_end_date)
