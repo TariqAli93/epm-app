@@ -6,6 +6,7 @@ import {
   globalShortcut,
   ipcMain,
   dialog,
+  shell,
 } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
@@ -13,6 +14,8 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 
 import { autoUpdater } from 'electron-updater'
 import log from 'electron-log'
+
+import PDFWindow from 'electron-pdf-window'
 
 log.transports.file.level = 'debug'
 autoUpdater.logger = log
@@ -83,6 +86,18 @@ async function createWindow() {
     })
   })
 
+  ipcMain.on('open-file', (event, url) => {
+    const pdfView = new BrowserWindow({
+      width: 800,
+      height: 600,
+      webPreferences: {
+        nodeIntegration: true,
+      },
+    })
+
+    pdfView.loadURL(url)
+  })
+
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     await win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
     if (!process.env.IS_TEST) win.webContents.openDevTools()
@@ -100,8 +115,8 @@ async function createWindow() {
 
 async function createSplash() {
   splash = new BrowserWindow({
-    width: 500,
-    height: 300,
+    width: 1200,
+    height: 740,
     show: true,
     frame: false,
     alwaysOnTop: true,
@@ -144,7 +159,7 @@ app.on('ready', async () => {
     createWindow()
     win.show()
     splash.close()
-  }, 4500)
+  }, 4000)
 })
 
 if (isDevelopment) {

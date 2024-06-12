@@ -72,6 +72,10 @@
     <v-main>
       <v-container fluid>
         <div class="pt-10">
+          <!-- loading -->
+          <v-overlay :value="loading" color="white">
+            <v-progress-circular indeterminate color="primary"></v-progress-circular>
+          </v-overlay>
           <router-view />
         </div>
       </v-container>
@@ -89,7 +93,8 @@ export default {
     disabled_links: true,
     links: [],
     navigation_drawer: true,
-    navigation_drawer_mini: true
+    navigation_drawer_mini: true,
+    loading: false
   }),
 
   components: {
@@ -115,6 +120,10 @@ export default {
   mounted() {
     EventBus.$on("change_project", (event) => {
       this.links = event.sections;
+    });
+
+    EventBus.$on("loading", (event) => {
+      this.loading = event;
     });
   }
 };

@@ -13,6 +13,9 @@ export default new Vuetify({
     },
     themes: {
       dark: {},
+      light: {
+        primary: '#569398',
+      },
     },
   },
   lang: {

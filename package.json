@@ -1,5 +1,5 @@
 {
-  "name": "accountant",
+  "name": "epm",
   "version": "1.1.0",
   "private": true,
   "scripts": {
@@ -18,6 +18,7 @@
     "@vscode/codicons": "^0.0.31",
     "core-js": "^3.8.3",
     "electron-log": "^4.4.8",
+    "electron-pdf-window": "^1.0.12",
     "electron-updater": "^5.0.5",
     "exceljs": "^4.3.0",
     "html2canvas": "^1.4.1",

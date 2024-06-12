@@ -74,6 +74,7 @@
 
 <script>
 import moment from "moment";
+import { ipcRenderer } from "electron";
 export default {
   name: "PlanningPage",
   data() {
@@ -170,6 +171,13 @@ export default {
       this.fetch_files();
     },
 
+    viewFile(item) {
+      const url = this.axios.defaults.baseURL.split("/api")[0] + "/" + item.file_path;
+
+      console.log(item);
+      ipcRenderer.send("open-file", url);
+    },
+
     format_date(date) {
       console.log(moment(date).format("YYYY-MM-DD HH:mm:ss"));
       return moment(date).format("YYYY-MM-DD");
@@ -193,7 +201,8 @@ export default {
         this.files = sections.data.files.map((file) => {
           return {
             ...file,
-            file_name: file.file_name.split("-")[0],
+            file_path: file.file_path,
+            file_name: file.file_name,
             file_start_date: file.file_start_date === null ? "" : this.format_date(file.file_start_date),
             file_end_date: file.file_end_date === null ? "" : this.format_date(file.file_end_date)
           };

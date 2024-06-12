@@ -1,68 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Loading...</title>
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap");
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            font-family: "Cairo", sans-serif;
-            -webkit-app-region: drag;
-        }
-        .loading {
-            display: flex;
-            height: 100vh;
-            width: 100vw;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            background: white;
-            border-radius: 300px;
-        }
+      @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap");
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: "Cairo", sans-serif;
+        -webkit-app-region: drag;
+      }
 
-        .box {
-            align-self: flex-end;
-            animation-duration: 2s;
-            animation-iteration-count: infinite;
-            background-color: transparent;
-            margin: 0 auto 0 auto;
-            transform-origin: bottom;
-            height: 200px;
-            width: 200px;
-        }
+      h1,
+      p {
+        margin: 0;
+        line-height: 1.5;
+      }
 
-        img {
-            display: block;
-            width: 100%;
-            height: 100%;
-        }
+      p {
+        font-size: 1rem;
+        margin-block: 20px;
+      }
 
-        h1 {
-            font-size: 1.5em;
-            font-weight: bold;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            margin-top: 1em;
+      #splash__title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #474bff;
+      }
+
+      #splash__description {
+        font-size: 1rem;
+        font-weight: 400;
+        color: #474bff;
+      }
+
+      #splash {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        flex-direction: column;
+      }
+
+      #splash__image {
+        background-image: url(./splash_bg.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        flex-grow: 9;
+        height: 0;
+        width: 100%;
+      }
+
+      #splash__content {
+        flex-grow: 0.5;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+      }
+
+      .progress {
+        width: 134.4px;
+        height: 24.6px;
+        border-radius: 22.4px;
+        color: #474bff;
+        border: 2.2px solid;
+        position: relative;
+      }
+
+      .progress::before {
+        content: "";
+        position: absolute;
+        margin: 2.2px;
+        inset: 0 100% 0 0;
+        border-radius: inherit;
+        background: currentColor;
+        animation: progress-pf82op 4s infinite;
+      }
+
+      @keyframes progress-pf82op {
+        100% {
+          inset: 0;
         }
+      }
     </style>
-</head>
+  </head>
+  <body>
+    <div id="splash">
+      <div id="splash__image"></div>
+      <div id="splash__content">
+        <h1 id="splash__title">جاري التحميل</h1>
+        <p id="splash__description">يتم تحميل التطبيق، يرجى الانتظار</p>
 
-<body>
-    <div class="loading">
-        <div class="box bounce-2">
-            <img src="./icons/loading.gif" />
+        <div id="splash__progress">
+          <div class="progress"></div>
         </div>
-        <h1>جاري تشغيل البرنامج...</h1>
+      </div>
     </div>
-</body>
+  </body>
 
+  <script>
+    const progress = document.getElementById("splash__progress");
+    const progressText = document.getElementById("splash__progress__text");
+
+    let progressValue = 0;
+    const interval = setInterval(() => {
+      progressValue += 10;
+      progress.value = progressValue;
+      progressText.innerText = `${progressValue}%`;
+
+      if (progressValue >= 100) {
+        clearInterval(interval);
+      }
+    }, 1000);
+  </script>
 </html>

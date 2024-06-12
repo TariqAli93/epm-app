@@ -2,6 +2,7 @@
   <v-app>
     <title-bar />
     <div id="login-page">
+      <img src="@/assets/logo.png" alt="" />
       <v-card class="pa-4" color="white" elevation="0" max-width="600px">
         <v-toolbar color="primary" rounded dark>
           <v-toolbar-title>يرجى ادخال اسم المستخدم و كلمة المرور</v-toolbar-title>
@@ -117,5 +118,13 @@ body,
   align-items: center;
   height: 100vh;
   background: whitesmoke;
+  flex-direction: column;
+
+  img {
+    width: 300px;
+    height: 200px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0px 0px 0px black);
+  }
 }
 </style>
