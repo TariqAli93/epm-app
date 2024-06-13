@@ -26,7 +26,7 @@ module.exports = {
 
         publish: {
           provider: 'github',
-          owner: 'TariqAli93',
+          owner: env.proccess.GITHUB_USER,
           repo: 'epm-app',
           token: env.proccess.GITHUB_TOKEN,
           releaseType: 'release',
