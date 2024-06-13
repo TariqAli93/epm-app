@@ -13,8 +13,8 @@ Vue.config.productionTip = false
 Vue.use(Toasted)
 Vue.use(VueAxios, axios)
 
-Vue.axios.defaults.baseURL = 'http://localhost:5678/api/'
-// Vue.axios.defaults.baseURL = 'http://200.234.231.226:5678/api/'
+// Vue.axios.defaults.baseURL = 'http://localhost:5678/api/'
+Vue.axios.defaults.baseURL = 'http://200.234.231.226:5678/api/'
 
 axios.interceptors.request.use(
   function (config) {

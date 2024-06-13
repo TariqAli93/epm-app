@@ -104,13 +104,9 @@ async function createWindow() {
   } else {
     createProtocol('app')
     win.loadURL('app://./index.html')
-    autoUpdater
-      .checkForUpdatesAndNotify()
-      .then(() => {})
-      .catch((err) => {
-        log.error(err)
-      })
   }
+
+  autoUpdater.checkForUpdatesAndNotify()
 }
 
 async function createSplash() {

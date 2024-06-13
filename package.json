@@ -1,6 +1,6 @@
 {
   "name": "epm",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -19,7 +19,6 @@
     "core-js": "^3.8.3",
     "electron-log": "^4.4.8",
     "electron-pdf-window": "^1.0.12",
-    "electron-updater": "^5.0.5",
     "exceljs": "^4.3.0",
     "html2canvas": "^1.4.1",
     "html2pdf.js": "^0.10.1",
@@ -44,6 +43,7 @@
     "@vue/cli-service": "~5.0.0",
     "electron": "^13.0.0",
     "electron-devtools-installer": "^3.2.0",
+    "electron-updater": "^6.2.1",
     "sass": "^1.32.7",
     "sass-loader": "^12.0.0",
     "vue-cli-plugin-electron-builder": "~2.1.1",

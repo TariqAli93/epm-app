@@ -24,6 +24,14 @@ module.exports = {
           './node_modules/@vscode/codicons/dist/*',
         ],
 
+        publish: {
+          provider: 'github',
+          owner: 'TariqAli93',
+          repo: 'epm-app',
+          token: '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',
+          releaseType: 'release',
+        },
+
         win: {
           target: 'nsis',
           icon: './public/icon.ico',
