@@ -28,7 +28,7 @@ module.exports = {
           provider: 'github',
           owner: 'TariqAli93',
           repo: 'epm-app',
-          token: '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',
+          token: env.proccess.GITHUB_TOKEN,
           releaseType: 'release',
         },
 
